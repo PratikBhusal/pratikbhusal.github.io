@@ -1,0 +1,67 @@
+:root {
+  --primary-navbar-color: #272727;
+  --transition_length: 0.25s ease-in-out;
+  --closed-transform: rotate(0deg);
+}
+
+.menu-icon {
+  // width: 12px;
+  width: 30px;
+  height: 21px;
+  // position: absolute;
+  background: --primary-navbar-color;
+  border: none;
+  cursor: pointer;
+  transform: --closed-transform;
+  transition: --transition_length;
+
+  span {
+    display: block;
+    // position: absolute;
+    height: 3px;
+    width: 30px;
+    background: white;
+    border-radius: 30px; // Round off bar ends
+    opacity: 1;
+    // left: 0;
+    // top: 0;
+    transition: --transition_length;
+    transform: --closed-transform;
+
+    // Top Bar
+    &:nth-child(1) {
+      top: 0px;
+    }
+
+    // Middle Bars
+    &:nth-child(2),
+    &:nth-child(3) {
+      top: 9px;
+    }
+
+    // Bottom Bar
+    &:nth-child(4) {
+      top: 18px;
+    }
+  }
+
+  &.open span {
+    // Fade out to center the top and bottom bars
+    &:nth-child(1),
+    &:nth-child(4) {
+      top:   9px;
+      width: 0%;
+      left: 15px;
+    }
+
+    //top-left to bottom-right diagonal
+    &:nth-child(2) {
+      transform: rotate(45deg);
+    }
+
+    //bottom-left to top-right diagonal
+    &:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+  }
+}
