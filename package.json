@@ -1,0 +1,46 @@
+{
+  "name": "pratikbhusal.github.io",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start:11ty": "eleventy --serve",
+    "start": "npm-run-all --parallel start:*",
+    "build:11ty": "NODE_ENV=production ELEVENTY_PRODUCTION=true eleventy",
+    "build": "npm-run-all --parallel build:*",
+    "format:package.json": "sort-package-json package.json",
+    "format:prettier": "prettier --write . --cache",
+    "format": "npm-run-all --parallel format:*"
+  },
+  "dependencies": {
+    "alpinejs": "^3.14"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@fullhuman/postcss-purgecss": "^7.0.2",
+    "@jgarber/eleventy-plugin-postcss": "^3.0.0",
+    "@unocss/cli": "^65.5.0",
+    "@unocss/core": "^65.5.0",
+    "@unocss/eslint-config": "^65.5.0",
+    "@unocss/postcss": "^65.5.0",
+    "@unocss/preset-attributify": "^65.5.0",
+    "@unocss/preset-uno": "^65.5.0",
+    "cssnano": "^7.0.6",
+    "eslint": "^9.20.1",
+    "html-minifier-terser": "^7.2.0",
+    "npm-run-all2": "^7.0.2",
+    "postcss-combine-duplicated-selectors": "^10.0.3",
+    "postcss-import": "^16.1.0",
+    "postcss-preset-env": "^10.1.4",
+    "postcss-sort-media-queries": "^5.2.0",
+    "prettier": "^3.5.1",
+    "sort-package-json": "^2.14.0",
+    "typescript": "^5.7.3",
+    "unocss": "^65.5.0"
+  }
+}
