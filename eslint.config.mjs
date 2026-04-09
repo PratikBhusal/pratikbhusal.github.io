@@ -1,40 +1,27 @@
+import eslint from "@eslint/js";
+import tseslint from "typescript-eslint";
 import unocss from "@unocss/eslint-config/flat";
-// const config = {
-//   parser: "@typescript-eslint/parser",
-//   parserOptions: {
-//     project: true,
-//   },
-//   plugins: ["@typescript-eslint"],
-//   extends: [
-//     "next/core-web-vitals",
-//     "plugin:@typescript-eslint/recommended-type-checked",
-//     "plugin:@typescript-eslint/stylistic-type-checked",
-//   ],
-//   rules: {
-//     "@typescript-eslint/array-type": "off",
-//     "@typescript-eslint/consistent-type-definitions": "off",
-//     "@typescript-eslint/consistent-type-imports": [
-//       "warn",
-//       {
-//         prefer: "type-imports",
-//         fixStyle: "inline-type-imports",
-//       },
-//     ],
-//     "@typescript-eslint/no-unused-vars": [
-//       "warn",
-//       {
-//         argsIgnorePattern: "^_",
-//       },
-//     ],
-//     "@typescript-eslint/require-await": "off",
-//     "@typescript-eslint/no-misused-promises": [
-//       "error",
-//       {
-//         checksVoidReturn: {
-//           attributes: false,
-//         },
-//       },
-//     ],
-//   },
-// };
-export default [unocss];
+import { defineConfig } from "eslint/config";
+import globals from "globals";
+
+export default defineConfig(
+  eslint.configs.recommended,
+  tseslint.configs.recommended,
+  {
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+    },
+  },
+  // Just using `unocss` does not look at html files
+  unocss,
+
+  // // Explicitly specifying `files` does not work either.
+  // {
+  //   files: ["**/*.html"],
+  //   plugins: {
+  //     unocss
+  //   }
+  // }
+);
