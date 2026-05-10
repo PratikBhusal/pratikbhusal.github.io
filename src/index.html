@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Pratik Bhusal</title>
+        <meta name="description" content="Pratik Bhusal — software engineer portfolio" />
+        <meta property="og:title" content="Pratik Bhusal" />
+        <meta property="og:description" content="Software engineer portfolio" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://pratikbhusal.com" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <script type="module" src="/main.ts"></script>
+    </head>
+    <body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+        <a
+            href="#main"
+            class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:text-sm"
+            >Skip to content</a
+        >
+
+        <!-- Stacking order: positioned elements without z-index paint in DOM
+         order (later = on top), so children are ordered bottom-to-top:
+         overlay → sidebar → theme toggle → hamburger.
+
+         Hamburger being the highest on top
+         (ie has the highest implicit z-index)
+    -->
+        <!-- relative: establishes positioning context for absolute children -->
+        <nav
+            x-data="navigation"
+            x-on:keydown.escape.window="open = false"
+            class="bg-navbar relative text-white"
+            x-swipe.right="open = true"
+            x-swipe.left="open = false"
+        >
+            <!-- Overlay (mobile) -->
+            <div
+                x-show="open"
+                x-transition.opacity
+                x-on:click="open = false"
+                class="fixed inset-0 bg-black/40 md:hidden"
+            ></div>
+
+            <!-- Sidebar / nav links -->
+            <ul
+                class="bg-navbar fixed inset-y-0 left-0 flex flex-col gap-2 overflow-hidden pt-16 transition-[width,min-width] duration-200 md:static md:w-full md:flex-row md:gap-0 md:pt-0"
+                x-bind:class="open ? 'w-64 min-w-[min(calc(var(--spacing)*24),100%)] max-w-4/5' : 'w-0 min-w-0 md:w-full'"
+            >
+                <li>
+                    <a
+                        href="#Home"
+                        x-on:click="open = false"
+                        class="block px-6 py-3 transition-colors hover:bg-white/10"
+                        >Home</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="#Skills"
+                        x-on:click="open = false"
+                        class="block px-6 py-3 transition-colors hover:bg-white/10"
+                        >Skills</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="#Contact"
+                        x-on:click="open = false"
+                        class="block px-6 py-3 transition-colors hover:bg-white/10"
+                        >Contact</a
+                    >
+                </li>
+            </ul>
+
+            <!-- Theme toggle: absolute to pin top-right without affecting sibling layout -->
+            <div
+                x-data="theme"
+                class="absolute top-0 right-4 flex h-full items-center max-[6rem]:hidden"
+            >
+                <button
+                    x-on:click="toggle()"
+                    aria-label="Theme toggle"
+                    class="rounded-full bg-gray-200 p-2 dark:bg-gray-700"
+                >
+                    <span x-show="!dark">🌙</span>
+                    <span x-show="dark">☀️</span>
+                </button>
+            </div>
+
+            <!-- Hamburger button (mobile)
+           Four bars animate into an X when open:
+           - Top bar:    collapses to zero width at the center
+           - Middle bars: rotate ±45° to form an X
+           - Bottom bar: collapses to zero width at the center -->
+            <button
+                x-on:click="toggle()"
+                x-bind:aria-expanded="open"
+                aria-label="Toggle navigation"
+                class="relative flex h-12 w-12 flex-col items-center justify-center md:hidden"
+            >
+                <span
+                    class="h-0.5 w-7 rounded-full bg-white transition-all duration-200 ease-in-out"
+                    x-bind:class="open ? 'translate-y-2 scale-x-0' : ''"
+                ></span>
+                <span
+                    class="mt-[0.375em] h-0.5 w-7 rounded-full bg-white transition-all duration-200 ease-in-out"
+                    x-bind:class="open ? 'rotate-45' : ''"
+                ></span>
+                <span
+                    class="-mt-[0.125em] h-0.5 w-7 rounded-full bg-white transition-all duration-200 ease-in-out"
+                    x-bind:class="open ? '-rotate-45' : ''"
+                ></span>
+                <span
+                    class="mt-[0.375em] h-0.5 w-7 rounded-full bg-white transition-all duration-200 ease-in-out"
+                    x-bind:class="open ? '-translate-y-2 scale-x-0' : ''"
+                ></span>
+            </button>
+        </nav>
+
+        <main id="main" class="break-words">
+            Hello World pneumonoultramicroscopicsilicovolcanoconiosis
+        </main>
+    </body>
+</html>
